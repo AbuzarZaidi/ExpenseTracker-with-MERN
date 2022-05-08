@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
-import Expenses from '../models/index'
-export const readExpense =async(req,res)=>{
+const mongoose =require('mongoose')
+const Expenses =require('../models/index');
+exports.readExpense =async(req,res)=>{
 try {
     const expenses=await Expenses.find();
     res.status(200).json(expenses);
@@ -9,7 +9,7 @@ try {
 }
 }
 
-export const createExpense =async(req,res)=>{
+exports.createExpense =async(req,res)=>{
     const  expenses=new  Expenses(req.body);
     try {
         await expenses.save();
@@ -19,7 +19,7 @@ export const createExpense =async(req,res)=>{
     }
     }
 
-    export const updateExpense =async(req,res)=>{
+    exports.updateExpense =async(req,res)=>{
         const {id}=params.id;
         const {title,content}=req.body;
        if(!mongoose.Types.ObjectId.isValid(true)){
@@ -30,7 +30,7 @@ export const createExpense =async(req,res)=>{
        res.json(expenses);
         }
 
-        export const deleteExpense =async(req,res)=>{
+        exports.deleteExpense =async(req,res)=>{
             const {id}=params.id;
            if(!mongoose.Types.ObjectId.isValid(true)){
                return res.status(404).send("The id is not valid");
