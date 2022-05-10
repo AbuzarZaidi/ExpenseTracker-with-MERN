@@ -6,6 +6,8 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 const { createExpense } = require("../functions/index");
 const AmountForm = (props) => {
+  const [checkEmptyField,setCheckEmptyField]=useState(false);
+  const [checkAmountType,setCheckAmountType]=useState(false);
   const [newExpense, setNewExpense] = useState({
     amount: "",
     description: "",
@@ -20,6 +22,22 @@ const AmountForm = (props) => {
       console.log(result)
       clearData();
     }
+    else{
+      if(isNaN(newExpense.amount)){
+        setCheckAmountType(true);
+      setTimeout(() => {
+        setCheckAmountType(false);
+      }, 2000);
+      }
+      else{
+        setCheckEmptyField(true);
+        setTimeout(() => {
+          setCheckEmptyField(false);
+        }, 2000);
+      }
+      }
+     
+      clearData();
   };
 
   
@@ -52,10 +70,13 @@ const AmountForm = (props) => {
         noValidate
         autoComplete="off"
       >
+       {checkEmptyField&& <p style={{color:"red"}}>Text field cannot be empty</p>}
+       {checkAmountType&&<p style={{color:"red"}}>Amount Should be a Number</p>}
         <TextField
           id="standard-basic"
           label="Enter Amount"
           variant="standard"
+          
           value={newExpense.amount}
           onChange={(e) =>
             setNewExpense({ ...newExpense, amount: e.target.value })

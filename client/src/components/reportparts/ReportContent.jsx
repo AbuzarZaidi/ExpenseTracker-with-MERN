@@ -5,7 +5,8 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Box from "@mui/material/Box";
-const ReportContent = () => {
+const ReportContent = (props) => {
+  // console.log("props.expense"+ props.expense)
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -25,14 +26,13 @@ const ReportContent = () => {
             id="panel1bh-header"
           >
             <Typography sx={{ width: "10%", flexShrink: 0 }}>1</Typography>
-            <Typography sx={{ width: "30%", flexShrink: 0 }}>$2000</Typography>
-            <Typography sx={{ width: "29%" }}>Withdraw</Typography>
+            <Typography sx={{ width: "30%", flexShrink: 0 }}>${props.amount}</Typography>
+            <Typography sx={{ width: "29%" }}>{props.type}</Typography>
             <Typography sx={{ width: "30%" }}>29-03-2000</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              Nulla facilisi. Phasellus sollicitudin nulla et quam mattis
-              feugiat. Aliquam eget maximus est, id dignissim quam.
+            <Typography sx={{color: "text.secondary", fontWeight: 600}}>
+           Description:  {props.description}
             </Typography>
           </AccordionDetails>
         </Accordion>

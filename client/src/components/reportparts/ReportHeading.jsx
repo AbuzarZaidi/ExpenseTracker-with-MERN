@@ -7,7 +7,7 @@ import Divider from "@mui/material/Divider";
 const ReportHeading = () => {
   return (
     <>
-      <h1 class="display-2 d-flex  justify-content-center mb-5">
+      <h1 className="display-2 d-flex  justify-content-center mb-5">
         Monthly Report
       </h1>
       <div>
