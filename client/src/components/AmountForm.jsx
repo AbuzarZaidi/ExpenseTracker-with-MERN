@@ -97,7 +97,9 @@ const AmountForm = (props) => {
             setNewExpense({ ...newExpense, description: e.target.value })
           }
         />
-         {checkEmptyField&&<Stack sx={{ width: '100%' }} ><Alert severity="error">Text field cannot be empty</Alert></Stack>}
+        
+        {checkEmptyField===false&&checkAmountType===false?<><br /><br /></>:""}
+         {checkEmptyField&&<Stack sx={{ width: '50%' }} spacing={2}><Alert severity="error">Text field cannot be empty</Alert></Stack>}
        {checkAmountType&& <Stack sx={{ width: '100%' }} spacing={2}><Alert severity="error">Amount Should be a Number</Alert></Stack>}
       </Box>
       
