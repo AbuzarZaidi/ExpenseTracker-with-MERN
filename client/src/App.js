@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-//  import Home from './components/Home';
 import Deposit from "./pages/Deposit";
 import Reports from "./pages/Reports";
 import Withdraw from "./pages/Withdraw";

@@ -12,9 +12,9 @@ const Reports = () => {
   const [flag, setFlag] = useState(false);
   const [filter, setFilter] = useState("All");
   const [currentAmount, setCurrentAmount] = useState(0);
- const FilterHanlder=(value)=>{
-  setFilter(value);
- }
+  const FilterHanlder = (value) => {
+    setFilter(value);
+  };
   useEffect(() => {
     const fetchData = async () => {
       const result = await readExpense();
@@ -34,10 +34,11 @@ const Reports = () => {
   }, [setExpensesList, setFilter]);
   return (
     <>
-     
-      <ReportHeading currentAmount={currentAmount} changeHandler={FilterHanlder} />
+      <ReportHeading
+        currentAmount={currentAmount}
+        changeHandler={FilterHanlder}
+      />
 
-     
       {!flag && (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <CircularProgress />
