@@ -29,7 +29,7 @@ const Reports = () => {
     </Box>}
     {flag&&expensesList.length===0&& <p className="display-6 d-flex  justify-content-center mb-5">Could find any data!</p>}
       {flag&&expensesList.length>0&&expensesList.map((expense)=>{
-      return <ReportContent key={expense._id}  amount={expense.amount} type={expense.type} description={expense.description}/>
+      return <ReportContent key={expense._id} date={expense.date}  amount={expense.amount} type={expense.type} description={expense.description}/>
       
       })}
     </>

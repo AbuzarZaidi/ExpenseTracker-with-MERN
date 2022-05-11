@@ -28,7 +28,7 @@ const ReportContent = (props) => {
             <Typography sx={{ width: "10%", flexShrink: 0 }}>1</Typography>
             <Typography sx={{ width: "30%", flexShrink: 0 }}>${props.amount}</Typography>
             <Typography sx={{ width: "29%" }}>{props.type}</Typography>
-            <Typography sx={{ width: "30%" }}>29-03-2000</Typography>
+            <Typography sx={{ width: "30%" }}>5/11/2022</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography sx={{color: "text.secondary", fontWeight: 600}}>
