@@ -2,8 +2,9 @@ import { useState } from "react";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 const { createExpense } = require("../functions/index");
 const AmountForm = (props) => {
   const [checkEmptyField,setCheckEmptyField]=useState(false);
@@ -55,6 +56,10 @@ const AmountForm = (props) => {
       <h1 className="display-2 d-flex  justify-content-center">
         {props.type} Amount
       </h1>
+     
+      
+     
+       
       <Box
         component="form"
         sx={{
@@ -70,8 +75,8 @@ const AmountForm = (props) => {
         noValidate
         autoComplete="off"
       >
-       {checkEmptyField&& <p style={{color:"red"}}>Text field cannot be empty</p>}
-       {checkAmountType&&<p style={{color:"red"}}>Amount Should be a Number</p>}
+       
+      
         <TextField
           id="standard-basic"
           label="Enter Amount"
@@ -92,7 +97,10 @@ const AmountForm = (props) => {
             setNewExpense({ ...newExpense, description: e.target.value })
           }
         />
+         {checkEmptyField&&<Stack sx={{ width: '100%' }} ><Alert severity="error">Text field cannot be empty</Alert></Stack>}
+       {checkAmountType&& <Stack sx={{ width: '100%' }} spacing={2}><Alert severity="error">Amount Should be a Number</Alert></Stack>}
       </Box>
+      
       <Stack
         direction="row"
         spacing={2}
@@ -101,6 +109,7 @@ const AmountForm = (props) => {
           justifyContent: "center",
         }}
       >
+        
         <Button
           variant="contained"
           color="success"
@@ -111,7 +120,9 @@ const AmountForm = (props) => {
         <Button variant="outlined" color="secondary">
           Go back
         </Button>
+       
       </Stack>
+      
     </>
   );
 };
