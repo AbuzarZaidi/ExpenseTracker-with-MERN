@@ -27,7 +27,7 @@ const ReportContent = (props) => {
             aria-controls="panel1bh-content"
             id="panel1bh-header"
           >
-            <Typography sx={{ width: "10%", flexShrink: 0 }}>1</Typography>
+            <Typography sx={{ width: "10%", flexShrink: 0 }}>{props.index}</Typography>
             <Typography sx={{ width: "30%", flexShrink: 0 }}>${props.amount}</Typography>
             <Typography sx={{ width: "29%" }}>{props.type}</Typography>
             <Typography sx={{ width: "30%" }}>{props.date.split('T')[0]}</Typography>

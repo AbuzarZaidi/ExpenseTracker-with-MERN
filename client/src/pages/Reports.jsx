@@ -4,21 +4,21 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import ReportHeading from "../components/reportparts/ReportHeading";
 import ReportContent from "../components/reportparts/ReportContent";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+// import InputLabel from '@mui/material/InputLabel';
+// import MenuItem from '@mui/material/MenuItem';
+// import FormHelperText from '@mui/material/FormHelperText';
+// import FormControl from '@mui/material/FormControl';
+// import Select from '@mui/material/Select';
 const { readExpense } = require("../functions/index");
 
 const Reports = () => {
   const [expensesList,setExpensesList]=useState(null);
   const [flag,setFlag]=useState(false);
-   const [age, setAge] = React.useState('');
-const [currentAmount,setCurrentAmount]=useState(0);
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+//    const [age, setAge] = React.useState('');
+ const [currentAmount,setCurrentAmount]=useState(0);
+//   const handleChange = (event) => {
+//     setAge(event.target.value);
+//   };
   useEffect(() => {
     const fetchData = async () => {
       const result = await readExpense();
@@ -86,8 +86,8 @@ const [currentAmount,setCurrentAmount]=useState(0);
       <CircularProgress />
     </Box>}
     {flag&&expensesList.length===0&& <p className="display-6 d-flex  justify-content-center mb-5">Could find any data!</p>}
-      {flag&&expensesList.length>0&&expensesList.map((expense)=>{
-      return <ReportContent key={expense._id} date={expense.date}  amount={expense.amount} type={expense.type} description={expense.description}/>
+      {flag&&expensesList.length>0&&expensesList.map((expense,ind)=>{
+      return <ReportContent index={ind+1} key={expense._id} date={expense.date}  amount={expense.amount} type={expense.type} description={expense.description}/>
       
       })}
     </>
