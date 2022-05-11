@@ -9,7 +9,7 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 const ReportHeading = (props) => {
   return (
     <>
-    <Box  sx={{ display: "flex",justifyContent: 'flex-end'  }}>
+    <Box  sx={{ display: "flex",justifyContent: 'flex-end', mt:1  }}>
      <Fab variant="extended" >
      <Typography
                 sx={{  color: "text.secondary", fontWeight: 600 }}
