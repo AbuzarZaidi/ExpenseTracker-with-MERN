@@ -5,14 +5,16 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Box from "@mui/material/Box";
+
 const ReportContent = (props) => {
   // console.log("props.expense"+ props.expense)
   const [expanded, setExpanded] = React.useState(false);
-
+ 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
   return (
+    
     <div>
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Accordion
@@ -38,6 +40,7 @@ const ReportContent = (props) => {
         </Accordion>
       </Box>
     </div>
+    
   );
 };
 
