@@ -1,58 +1,77 @@
-import * as React from "react";
+import React from "react";
+import {
+  AppBar,
+  Toolbar,
+  CssBaseline,
+  Typography,
+  makeStyles,
+  useTheme,
+  useMediaQuery,
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-// import IconButton from '@mui/material/IconButton';
-// import MenuIcon from '@mui/icons-material/Menu';
-const Navbar = () => {
+import DrawerComponent from "./Drawer";
+
+const useStyles = makeStyles((theme) => ({
+  navlinks: {
+    marginLeft: theme.spacing(2),
+    display: "flex",
+    
+  },
+  logo: {
+    flexGrow: "1",
+    cursor: "pointer",
+    
+  },
+  link: {
+    textDecoration: "none",
+    color: "white",
+    fontSize: "15px",
+    marginLeft: theme.spacing(3),
+    "&:hover": {
+      color: "white",
+      fontSize: "20px",
+     
+    },
+   
+  },
+  active:{
+    borderBottom: "1px solid white",
+  }
+}));
+
+function Navbar() {
+  const classes = useStyles();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          {/* <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-              > 
-                <MenuIcon />
-              </IconButton>  */}
-
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-              Expenses Tracker
-            </Link>
-          </Typography>
-
-          <Button color="inherit">
-            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+    <AppBar position="static">
+      <CssBaseline />
+      <Toolbar>
+        
+        <Typography variant="h6" className={classes.logo}>
+        
+        <Link to="/" style={{  color: "white",textDecoration: "none"}}>Expense Tracker</Link>
+          
+        </Typography>
+        
+        {isMobile ? (
+          <DrawerComponent />
+        ) : (
+          <div className={classes.navlinks}>
+            <Link to="/" className={classes.link}>
               Deposit
             </Link>
-          </Button>
-          <Button color="inherit">
-            <Link
-              to="/withdraw"
-              style={{ textDecoration: "none", color: "white" }}
-            >
+            <Link to="/withdraw" className={classes.link}>
               Withdraw
             </Link>
-          </Button>
-          <Button color="inherit">
-            <Link
-              to="/report"
-              style={{ textDecoration: "none", color: "white" }}
-            >
+            <Link to="/report" className={classes.link}>
               Report
             </Link>
-          </Button>
-        </Toolbar>
-      </AppBar>
-    </Box>
+          </div>
+        )}
+      </Toolbar>
+    </AppBar>
   );
-};
-
+}
 export default Navbar;

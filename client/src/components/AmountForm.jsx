@@ -1,14 +1,18 @@
 import { useState } from "react";
 import * as React from "react";
+import { ThemeProvider } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
+import { styled } from "@mui/material/styles";
+import { theme } from "./styles.js";
 const { createExpense } = require("../functions/index");
 const AmountForm = (props) => {
   const [checkEmptyField, setCheckEmptyField] = useState(false);
   const [checkAmountType, setCheckAmountType] = useState(false);
+
   const [newExpense, setNewExpense] = useState({
     amount: "",
     description: "",
@@ -46,65 +50,91 @@ const AmountForm = (props) => {
       type: props.type,
     });
   };
+  const Responsive = styled("Box")(({ theme }) => ({
+    [theme.breakpoints.up("mobile")]: {
+      width: "100%",
+     
+    },
+    [theme.breakpoints.up("tablet")]: {
+      width: "100%",
+    },
+    [theme.breakpoints.up("laptop")]: {
+      width: "50%",
+      
+    },
+  }));
+  
   return (
     <>
-      <h1 className="display-2 d-flex  justify-content-center">
+       <h1 className="display-2 d-flex  justify-content-center">
         {props.type} Amount
       </h1>
 
-      <Box
-        component="form"
-        sx={{
-          "& > :not(style)": {
-            width: "600px",
-            m: "auto",
-            display: "flex",
-            justifyContent: "center",
-          },
+      <ThemeProvider theme={theme}>
+        <Responsive>
+        
+          <Box
+            component="form"
+            sx={{
+              "& > :not(style)": {
+                // width: "600px",
 
-          p: 10,
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <TextField
-          id="standard-basic"
-          label="Enter Amount"
-          variant="standard"
-          value={newExpense.amount}
-          onChange={(e) =>
-            setNewExpense({ ...newExpense, amount: e.target.value })
-          }
-        />
-        <br />{" "}
-        <TextField
-          id="standard-basic"
-          label="Description"
-          variant="standard"
-          value={newExpense.description}
-          onChange={(e) =>
-            setNewExpense({ ...newExpense, description: e.target.value })
-          }
-        />
-        {checkEmptyField === false && checkAmountType === false ? (
-          <>
-            <br />
-            <br />
-          </>
-        ) : (
-          ""
-        )}
-        {checkEmptyField && (
-          <Stack sx={{ width: "50%" }} spacing={2}>
-            <Alert severity="error">Text field cannot be empty</Alert>
-          </Stack>
-        )}
-        {checkAmountType && (
-          <Stack sx={{ width: "100%" }} spacing={2}>
-            <Alert severity="error">Amount Should be a Number</Alert>
-          </Stack>
-        )}
-      </Box>
+                m: "auto",
+                display: "flex",
+                justifyContent: "center",
+                 width: '75%',
+              },
+
+              p: 1,
+            }}
+            noValidate
+            autoComplete="off"
+          >
+         
+            <TextField
+              sx={{ m: "auto" }}
+              id="standard-basic"
+              label="Enter Amount"
+              variant="standard"
+              value={newExpense.amount}
+              onChange={(e) =>
+                setNewExpense({ ...newExpense, amount: e.target.value })
+              }
+            />
+          
+            <br />{" "}
+            <TextField
+              id="standard-basic"
+              label="Description"
+              variant="standard"
+              value={newExpense.description}
+              onChange={(e) =>
+                setNewExpense({ ...newExpense, description: e.target.value })
+              }
+            />
+            {checkEmptyField === false && checkAmountType === false ? (
+              <>
+                <br />
+                <br />
+              </>
+            ) : (
+              ""
+            )}
+            {checkEmptyField && (
+              <Stack sx={{ width: "50%" }} spacing={2}>
+                <Alert severity="error">Text field cannot be empty</Alert>
+              </Stack>
+            )}
+            {checkAmountType && (
+              <Stack sx={{ width: "100%" }} spacing={2}>
+                <Alert severity="error">Amount Should be a Number</Alert>
+              </Stack>
+            )}
+           
+          </Box>
+         
+        </Responsive>
+      </ThemeProvider>
 
       <Stack
         direction="row"
