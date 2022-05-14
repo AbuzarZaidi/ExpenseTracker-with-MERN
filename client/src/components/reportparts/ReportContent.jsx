@@ -18,7 +18,7 @@ const ReportContent = (props) => {
         <Accordion
           expanded={expanded === "panel2"}
           onChange={handleChange("panel2")}
-          sx={{ mb: 1, width: "70%" }}
+          sx={{ mb: 1, width: props.width }}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}

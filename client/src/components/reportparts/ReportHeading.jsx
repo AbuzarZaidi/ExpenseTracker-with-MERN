@@ -24,7 +24,7 @@ const ReportHeading = (props) => {
 
       <div>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <List sx={{ mb: 1, width: "70%" }}>
+          <List sx={{ mb: 1, width: props.width}}>
             <Box
               sx={{ display: "flex", mt: 1, justifyContent: "space-between" }}
             >

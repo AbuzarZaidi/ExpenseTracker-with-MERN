@@ -12,6 +12,31 @@ const Reports = () => {
   const [flag, setFlag] = useState(false);
   const [filter, setFilter] = useState("All");
   const [currentAmount, setCurrentAmount] = useState(0);
+  const[listWidth,setListWidth]=useState("100%");
+  const [windowDimenion, detectHW] = useState({
+    winWidth: window.innerWidth,
+    winHeight: window.innerHeight,
+  })
+
+  const detectSize = () => {
+    detectHW({
+      winWidth: window.innerWidth,
+      winHeight: window.innerHeight,
+    })
+  }
+  useEffect(() => {
+    window.addEventListener('resize', detectSize)
+    if(windowDimenion.winWidth>800){
+      setListWidth("70%")
+    }
+    else{
+      setListWidth("100%")
+    }
+    
+    return () => {
+      window.removeEventListener('resize', detectSize)
+    }
+  }, [windowDimenion])
   const FilterHanlder = (value) => {
     setFilter(value);
   };
@@ -37,6 +62,7 @@ const Reports = () => {
       <ReportHeading
         currentAmount={currentAmount}
         changeHandler={FilterHanlder}
+        width={listWidth}
       />
 
       {!flag && (
@@ -64,6 +90,7 @@ const Reports = () => {
                 amount={expense.amount}
                 type={expense.type}
                 description={expense.description}
+                width={listWidth}
               />
             );
           })}
